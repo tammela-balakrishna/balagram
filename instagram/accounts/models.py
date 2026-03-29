@@ -10,9 +10,7 @@ class Profile(models.Model):
 
     bio = models.TextField(blank=True, null=True)
 
-    profile_image = models.ImageField(
-        upload_to="profiles/", blank=True, null=True
-    )
+    profile_image = models.URLField(blank=True, null=True)
 
     is_private = models.BooleanField(default=False)
 

@@ -28,7 +28,7 @@ DEBUG = env_bool("DJANGO_DEBUG", default=True)
 
 RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0", "https://balagram.onrender.com", ".onrender.com"]
 ALLOWED_HOSTS.extend(env_list("DJANGO_ALLOWED_HOSTS"))
 
 if RENDER_EXTERNAL_HOSTNAME:
@@ -149,6 +149,7 @@ REST_FRAMEWORK = {
 DEFAULT_FRONTEND_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://balagram.onrender.com",
 ]
 
 CORS_ALLOWED_ORIGINS = sorted(
@@ -167,6 +168,7 @@ CSRF_TRUSTED_ORIGINS = sorted(
 
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

@@ -62,16 +62,16 @@ class LoginView(APIView):
 		)
 
 	def post(self, request, *args, **kwargs):
-		username = request.data.get("username")
+		username_or_email = request.data.get("username") or request.data.get("email")
 		password = request.data.get("password")
 
-		if not username or not password:
+		if not username_or_email or not password:
 			return Response(
-				{"detail": "username and password are required"},
+				{"detail": "username/email and password are required"},
 				status=status.HTTP_400_BAD_REQUEST,
 			)
 
-		user = authenticate(request, username=username, password=password)
+		user = authenticate(request, username=username_or_email, password=password)
 		if user is None:
 			return Response(
 				{"detail": "Invalid credentials"},

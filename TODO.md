@@ -1,7 +1,8 @@
-# Fix 405 on GET /api/accounts/login/
+tr# Production Error Fix TODO
 
-## Steps:
-1. [x] Add GET method to LoginView in instagram/accounts/views.py ✓
-2. [x] Test locally ✓
-3. [ ] Deploy to Render via render.yaml push to git.
-4. [ ] Verify production /api/accounts/login/ GET no longer 405.
+## [x] 1. Create TODO.md (done)
+## [x] 2. Fix settings.py (ALLOWED_HOSTS, SSL header, CORS/CSRF)
+## [x] 3. Test local server
+## [x] 4. Diagnose accounts/login (400) & register (500) errors - inspect views/serializers
+## [ ] 5. Deploy to Render & verify
+## [ ] 6. Monitor logs, test frontend auth
