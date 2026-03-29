@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+frontend2/node_modules/
+frontend2/.env
+
+instagram/frontend_dist/
+instagram/staticfiles/
+instagram/media/
+instagram/.env
+
+instagram/db.sqlite3
