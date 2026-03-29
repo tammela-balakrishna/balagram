@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
 
-    "accounts",
+    "accounts.apps.AccountsConfig",
     "posts",
     "social",
     "messaging",
