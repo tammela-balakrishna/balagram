@@ -28,7 +28,7 @@ DEBUG = env_bool("DJANGO_DEBUG", default=True)
 
 RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0","https://balagram.onrender.com"]
 ALLOWED_HOSTS.extend(env_list("DJANGO_ALLOWED_HOSTS"))
 
 if RENDER_EXTERNAL_HOSTNAME:
