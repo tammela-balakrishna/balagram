@@ -41,6 +41,26 @@ class CsrfView(APIView):
 class LoginView(APIView):
 	permission_classes = [AllowAny]
 
+	def get(self, request, *args, **kwargs):
+		if not request.user.is_authenticated:
+			return Response({"detail": "Not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
+
+		profile = getattr(request.user, "profile", None)
+		profile_data = (
+			ProfileSerializer(profile, context={"request": request}).data
+			if profile
+			else None
+		)
+
+		return Response(
+			{
+				"id": request.user.id,
+				"username": request.user.username,
+				"email": request.user.email,
+				"profile": profile_data,
+			}
+		)
+
 	def post(self, request, *args, **kwargs):
 		username = request.data.get("username")
 		password = request.data.get("password")
