@@ -5,6 +5,7 @@ import { PageHero, SurfaceCard } from '../components/ui'
 import { useAuth } from '../context/AuthContext'
 import { apiFetch, ensureCsrfCookie, getCookie, readJson } from '../lib/api'
 
+
 export function LoginPage() {
 
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ export function LoginPage() {
     setSubmitting(true)
     setError('')
 
+
     try {
 
       /*
@@ -35,14 +37,13 @@ export function LoginPage() {
 
       /*
       Step 2
-      Send login request with cookies
+      Send login request
       */
       const response = await apiFetch(
         '/api/accounts/login/',
         {
-          method: 'POST',
 
-          credentials: 'include',
+          method: 'POST',
 
           headers: {
             'Content-Type': 'application/json',
@@ -53,6 +54,7 @@ export function LoginPage() {
             username,
             password,
           }),
+
         }
       )
 
@@ -74,18 +76,19 @@ export function LoginPage() {
 
       /*
       Step 3
-      Save logged user in context
+      store logged user
       */
       setUser(data)
 
 
       /*
       Step 4
-      Redirect after login
+      redirect
       */
       const from =
         location.state?.from?.pathname
         || '/feed'
+
 
       navigate(from)
 
@@ -99,6 +102,7 @@ export function LoginPage() {
       setSubmitting(false)
 
     }
+
   }
 
 
@@ -132,10 +136,7 @@ export function LoginPage() {
 
               <input
                 value={username}
-                onChange={(e) =>
-                  setUsername(e.target.value)
-                }
-
+                onChange={e => setUsername(e.target.value)}
                 autoComplete="username"
 
                 className="w-full rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-emerald-400 focus:bg-white"
@@ -153,12 +154,9 @@ export function LoginPage() {
 
               <input
                 type="password"
-
                 value={password}
 
-                onChange={(e) =>
-                  setPassword(e.target.value)
-                }
+                onChange={e => setPassword(e.target.value)}
 
                 autoComplete="current-password"
 
@@ -191,9 +189,7 @@ export function LoginPage() {
                 error && (
 
                   <p className="text-sm text-rose-600">
-
                     {error}
-
                   </p>
 
                 )
@@ -209,6 +205,7 @@ export function LoginPage() {
       </div>
 
     </div>
+
   )
 
 }
